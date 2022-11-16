@@ -48,6 +48,7 @@ const generateRead = ({title, description, install, usage, license, contribute, 
 
   ## Questions
   >[Click for GitHub Repo](https://github.com/${user})
+  \
   [Send me an email](mailto:${email})
   `;
 
@@ -103,9 +104,7 @@ inquirer
   .then((answers) => {
     const readContent = generateRead(answers);
   
-
-  //.then(function(badge)) {
-    //for(let i = 0; i < answers.license; i++) {
+    //var badge = answers.badge
       //if (answers.license === 'MIT') {
       //badge ('[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)');
       //} else if (answers.license === 'Apache') {
