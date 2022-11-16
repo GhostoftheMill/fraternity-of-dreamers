@@ -3,18 +3,18 @@ const inquirer = require('inquirer');
 const fs = require('fs')
 
 // TODO: Create an array of questions for user input
-const readQuestions = [];
+//const readQuestions = [];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+//function writeFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+//function init() {}
 
 // Function call to initialize app
-init();
+//init();
 
-const generateRead = ({title, description, install, usage, license, contribute, tests, user}) =>
+const generateRead = ({title, description, install, usage, license, contribute, tests, user, email}) =>
   `
   # ${title}
 
@@ -34,7 +34,6 @@ const generateRead = ({title, description, install, usage, license, contribute, 
   >${install}
 
   ## Usage
-   
   >${usage}
 
   ## License
@@ -47,7 +46,8 @@ const generateRead = ({title, description, install, usage, license, contribute, 
   >${tests}
 
   ## Questions
-  ${user}
+  >[Click for GitHub Repo](https://github.com/${user})
+  [Send me an email](mailto:${email})
   `;
 
 inquirer
@@ -73,9 +73,10 @@ inquirer
         message: 'Describe how to use this project?',
     },
     {
-        type: 'input',
+        type: 'list',
         name: 'license',
         message: 'What type of license should this project have?',
+        choices: ['MIT', 'Apache', 'GPL', 'WTFPL']
     },
     {
         type: 'input',
@@ -92,6 +93,11 @@ inquirer
         name: 'user',
         message: 'What is your GitHub name?',
     }, 
+    {
+        type: 'input',
+        name: 'email',
+        message: 'What is your email address?',
+    },
   ])
   .then((answers) => {
     const readContent = generateRead(answers);
