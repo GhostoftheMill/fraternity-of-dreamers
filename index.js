@@ -14,9 +14,10 @@ const fs = require('fs')
 // Function call to initialize app
 //init();
 
-const generateRead = ({title, description, install, usage, license, contribute, tests, user, email}) =>
+const generateRead = ({title, description, install, usage, license, contribute, tests, user, email, badge}) =>
   `
   # ${title}
+  ${badge}
 
   ## Description
   >${description}
@@ -76,7 +77,7 @@ inquirer
         type: 'list',
         name: 'license',
         message: 'What type of license should this project have?',
-        choices: ['MIT', 'Apache', 'GPL', 'WTFPL']
+        choices: ['MIT', 'Apache', 'Creative Commons', 'WTFPL']
     },
     {
         type: 'input',
@@ -101,6 +102,19 @@ inquirer
   ])
   .then((answers) => {
     const readContent = generateRead(answers);
+  
+
+  //.then(function(badge)) {
+    //for(let i = 0; i < answers.license; i++) {
+      //if (answers.license === 'MIT') {
+      //badge ('[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)');
+      //} else if (answers.license === 'Apache') {
+      //badge ('[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)');
+      //} else if (answers.license === 'Creative Commons') {
+      //badge ('[![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png)](http://creativecommons.org/publicdomain/zero/1.0/)');
+      //} else if (answers.license === 'WTFPL') {
+      //badge ('[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)');
+    //}};
 
     fs.writeFile('README.md', readContent, (err) =>
       err ? console.log(err) : console.log('Successfully created README.md!')
